@@ -1,0 +1,7 @@
+{
+  "name": "Rent2Trust-Delivery",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

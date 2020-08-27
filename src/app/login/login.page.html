@@ -1,0 +1,74 @@
+<ion-content>
+  <ion-progress-bar type="indeterminate" *ngIf="hideNshowProgressBar"></ion-progress-bar>
+  <ion-item lines ="none" style="margin-top: 40px; ">
+    <ion-thumbnail slot="start" class="img-center">
+      <img src="assets/icon/Rent2Trust.jpeg" style="width: 45%;">
+    </ion-thumbnail>
+  </ion-item>
+
+  <ion-card *ngIf="selectedFrom == 'loginForm'" style="text-align: center;">
+    <ion-card-content>
+      <div>
+        <ion-icon style="font-size: 50px;color: #339929;" name="phone-portrait"></ion-icon>
+      </div>
+      <h6>
+          <b>Enter your mobile number</b>
+      </h6>
+      <h6 style="padding: 13px;">
+          We will send a 6-digit verification code to this mobile number
+      </h6>
+      <p>
+        <!-- <hr style="box-sizing: border-box;border-width: 1px;border-color: #fff;"> -->
+        <ion-row>
+          <ion-col size="3">
+            <ion-select placeholder="Select" interface="action-sheet" [(ngModel)]="countryCode" class="input-box" style="font-size: 15px;">
+              <ion-select-option value="+91">+91</ion-select-option>
+              <ion-select-option value="+1">+1</ion-select-option>
+            </ion-select>
+          </ion-col>
+          <ion-col size="9" style=" padding-left: 0px;">
+            <ion-input class="input-box"  type="tel"  maxlength="10" [(ngModel)]="mobileNumber" placeholder="Enter mobile number" style="font-size: 20px;"></ion-input>
+          </ion-col>
+        </ion-row>
+        <!-- <hr style="box-sizing: border-box;border-width: 1px;border-color: #fff;"> -->
+      </p>
+      <p>
+        <ion-button expand="full" color="primary" id="sendCodeBtn" (click)="sendVarificationCode()">
+            Send Code
+        </ion-button>
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="selectedFrom == 'loginOtpForm'">
+    <ion-card-content style="text-align: center">
+      <div>
+        <ion-icon style="font-size: 50px;color: #339929;" name="key"></ion-icon>
+      </div>
+      <h6>
+        <b>Verify your number</b>
+      </h6>
+      <h6 style="padding: 13px 13px 0;">
+        Enter the 6-digit Verification Code send to <b>{{mobileNumber}}</b> over SMS
+      </h6>
+      <!-- <p style="color: #d00c0f;" (click)="resetNumberAlert()">
+        RESET <b>{{mobileNumber}}</b> NUMBER
+      </p> -->
+      <!-- <p> -->
+      <ng-otp-input (onInputChange)="onOtpChange($event)" [config]="config"></ng-otp-input>
+      <h6 style="color: #d00c0f;" (click)="sendCode(phoneNumberWithCode)">
+          Resend Verification Code
+      </h6>
+      <!-- </p>  -->
+      <p>
+        <ion-button expand="full" color="primary" id="verifyNumberBtn" [disabled]="!verifyDisable" (click)="verifyNumber()">
+            Verify Number
+        </ion-button>
+      </p>
+    </ion-card-content>
+  </ion-card>
+  <div style="margin-top: 0px; opacity: 0;position: absolute;
+    bottom: 0px;" id="recaptcha-container">
+  </div>
+
+</ion-content>

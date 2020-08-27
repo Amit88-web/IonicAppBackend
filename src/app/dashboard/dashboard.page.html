@@ -1,0 +1,134 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Track Order
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content>
+  <ion-card>
+
+    <ion-card-header>
+      Order Details
+    </ion-card-header>
+  
+    <ion-card-content>
+      Order Id :{{id}}
+    </ion-card-content>
+    <ion-card-content>
+      Delivery boy ID/Name :{{id}}{{name}}
+    </ion-card-content>
+    <ion-card-content>
+      Seller name :{{sname}}
+    </ion-card-content>
+    <ion-card-content>
+      Seller Address :{{saddress}}
+    </ion-card-content>
+    <ion-card-content>
+      Buyer name :{{sname}}
+    </ion-card-content>
+    <ion-card-content>
+      Buyer address :{{baddress}}
+    </ion-card-content>
+  
+  </ion-card>
+  <ion-list>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="full" shape="round" fill="outline" (click)="startDelivery()">Start Delivery</ion-button>
+      </ion-col>
+      
+      <ion-col>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button expand="full" shape="round" fill="outline" (click)="reachedSeller()">Reached Seller</ion-button>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+    </ion-row>
+  
+    <ion-row>
+      <ion-col>
+        <ion-button expand="full" shape="round" fill="outline" (click)="orderPicked()">Order Picked</ion-button>
+      </ion-col>
+      
+      <ion-col>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button expand="full" shape="round" fill="outline" (click)="shipped()">Shipped</ion-button>
+      </ion-col>
+      
+      <ion-col>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button shape="round" expand="full" fill="outline" (click)="outToDelivery()">Out to Delivery</ion-button>
+      </ion-col>
+      
+      <ion-col>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <div class="signature-pad">
+          <div class="signature-pad--body">
+            <canvas #sPad id="pad" width="850" height="300" style="touch-action: none;"></canvas>
+          </div>
+        </div>
+      </ion-col>
+     
+     <br>
+     <br> 
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block"  color="warning" (click)="undo()">Undo</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button expand="block"  color="secondary" (click)="savePNG()">PNG</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button expand="block"  color="primary" (click)="saveJPG()">JPG</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button expand="block"  color="success" (click)="saveSVG()">SVG</ion-button>
+      </ion-col>
+      
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button  expand="block"  color="success" (click)="save()">Save</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button  expand="block"  color="danger" (click)="clear()">Clear</ion-button>
+      </ion-col>
+      
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="full" shape="round" fill="outline" (click)="delivered()">Delivered</ion-button>
+      </ion-col>
+      
+      <ion-col>
+        <ion-button expand="full" shape="round" fill="outline" (click)="cancel()">Cancel</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-list>
+
+</ion-content>

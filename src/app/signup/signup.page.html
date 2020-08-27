@@ -1,0 +1,117 @@
+<span>
+  <ion-buttons slot="end" class="position-set">
+    <ion-button size="large" color="primary" (click)="goToLogin()">LOGIN</ion-button>
+  </ion-buttons>
+</span>
+<ion-content>
+  <ion-item lines ="none" style="margin-top: 40px; ">
+    <ion-thumbnail slot="start" class="img-center">
+      <img src="assets/icon/Rent2Trust.jpeg" style="width: 45%;">
+    </ion-thumbnail>
+  </ion-item>
+  <ion-list lines="full" class="ion-no-margin ion-no-padding">
+
+    <ion-item class="remove-line-item" lines="none">
+      <ion-label position="stacked" style="margin-bottom: 5px;font-size: large;">Name <ion-text color="danger">*</ion-text>
+        <br><div no-padding class="errMsgLogin" >{{nameError}}</div>
+      </ion-label>
+      <ion-input placeholder="Full Name" class="input-box" [(ngModel)]="name" name="name" required type="text" (ionChange)="checkInputValue('name')"></ion-input>
+    </ion-item>
+
+    <ion-item class="remove-line-item" lines="none">
+      <ion-label position="stacked" style="margin-bottom: 5px;font-size: large;">Email <ion-text color="danger">*</ion-text>
+        <br><div no-padding class="errMsgLogin" >{{emailError}}</div>
+      </ion-label>
+      <ion-input placeholder="Email"  class="input-box" [(ngModel)]="email" name="email" required type="text" (ionChange)="checkInputValue('email')"></ion-input>
+    </ion-item>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col width-50>
+          <ion-item class="remove-line-item" style="margin-left: -10px;" lines="none">
+            <ion-label position="fixed" style="margin-bottom: 5px; zoom: 0.9;">
+                Mobile No
+            </ion-label>
+            <ion-select placeholder="Select" interface="action-sheet" [(ngModel)]="countryCode" class="input-box">
+              <ion-select-option value="+91">+91</ion-select-option>
+              <ion-select-option value="+1">+1</ion-select-option>
+            </ion-select>
+            <br><div no-padding class="errMsgLogin" >{{mobileNoError}}</div>
+          </ion-item>
+        </ion-col>
+        
+        <ion-col width-50>
+          <ion-item lines="none" class="remove-line-item">
+            <ion-input placeholder="Mobile Number" class="input-box" type="tel"  maxlength="10" [(ngModel)]="mobileNumber" name="mobileNumber" required (ionChange)="checkInputValue('mobileNumber')">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+       </ion-row>
+    </ion-grid>
+
+    <ion-item class="remove-line-item" lines="none">
+      <ion-label position="stacked" style="margin-bottom: 5px;font-size: large;">Address <ion-text color="danger">*</ion-text>
+        <br><div no-padding class="errMsgLogin" >{{addressError}}</div>
+      </ion-label>
+      <ion-input class="input-box" type="text" [(ngModel)]="address1" name="address1" required (ionChange)="checkInputValue('address1')" placeholder="Address Line 1"></ion-input>
+      <ion-input class="input-box" type="text" [(ngModel)]="address2" name="address2" required (ionChange)="checkInputValue('address2')" placeholder="Address Line 2"></ion-input>
+      <ion-input class="input-box" type="text" [(ngModel)]="city" name="city" required (ionChange)="checkInputValue('city')" placeholder="City"></ion-input>
+      <ion-input class="input-box" type="text" [(ngModel)]="state" name="state" required (ionChange)="checkInputValue('state')" placeholder="State"></ion-input>
+      <ion-input class="input-box" type="text" [(ngModel)]="country" name="country" required (ionChange)="checkInputValue('country')" placeholder="Country"></ion-input>
+      <ion-input class="input-box" type="number" [(ngModel)]="zipcode" name="zipcode" required (ionChange)="checkInputValue('zipcode')" placeholder="Zip Code"></ion-input>
+    </ion-item>
+
+    <ion-item class="remove-line-item" lines="none">
+      <ion-label position="stacked" style="margin-bottom: 5px;"> Profile Photo <ion-text color="danger">*</ion-text>
+        <br><div no-padding class="errMsgLogin" >{{profilePhotoError}}</div>
+      </ion-label>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6" *ngIf="profileImage">
+                <ion-avatar style="margin-right: 100px;" [(ngModel)]="profilePhoto">
+                  <img src="{{computDecodeURI(profileImage)}}">
+                </ion-avatar>
+            </ion-col>
+            <ion-col (click)="handlePhotoValue()" size="6" class="ion-align-self-center">
+              <ion-icon size="large" name="camera-outline" class="icon-radius"></ion-icon>
+            </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+    <ion-item class="remove-line-item" lines="none">
+      <ion-label style="margin-bottom: 5px;"> Identity Proof <ion-text color="danger">*</ion-text>
+        <br><div no-padding class="errMsgLogin" >{{identityProofError}}</div>
+      </ion-label>
+        <ion-select placeholder="Select Identity" interface="popover" [(ngModel)]="identityProof" class="input-box">
+          <ion-select-option value="aadhaar" *ngIf="country.toLowerCase() == 'india'">Aadhaar card</ion-select-option>
+          <ion-select-option value="driving" *ngIf="country.toLowerCase() == 'india'">Driving license</ion-select-option>
+          <ion-select-option value="pan" *ngIf="country.toLowerCase() == 'india'">Pan Card</ion-select-option>
+          <ion-select-option value="voter" *ngIf="country.toLowerCase() == 'india'">Voter Card</ion-select-option>
+          <ion-select-option value="passport">Passport</ion-select-option>
+          <ion-select-option value="sin-no." *ngIf="country.toLowerCase() == 'canada'">Sin No.</ion-select-option>
+          <ion-select-option value="student-visa" *ngIf="country.toLowerCase() == 'canada'">Student visas</ion-select-option>
+          <ion-select-option value="pr" *ngIf="country.toLowerCase() == 'canada'">PR card</ion-select-option>
+        </ion-select>
+    </ion-item>
+    <ion-item class="remove-line-item" lines="none">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6" *ngIf="identityProofImage">
+              <ion-avatar style="margin-right: 100px;">
+                <img src="{{computDecodeURI(identityProofImage)}}">
+              </ion-avatar>
+          </ion-col>
+          <ion-col (click)="clickIdentityPhoto()" size="6" class="ion-align-self-center">
+            <ion-icon size="large" name="camera-outline" style="margin-left: 50px;" class="icon-radius"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-button expand="block" type="submit" class="ion-no-margin" tappable (click)="createAccount($event)">Sign Up</ion-button>
+</ion-footer>

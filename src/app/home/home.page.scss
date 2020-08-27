@@ -1,0 +1,52 @@
+#map {
+  width: 100%;
+  height: 300px;
+}
+
+.vertical-line {
+  height: 50px;
+  width: 10px;
+  margin-left: 25px;
+}
+
+.icon {
+  max-width: 60px;
+  margin: 0 auto;
+}
+
+.circleicongreen {
+  width: 60px;
+  background-color: #60bf79;
+  border-radius: 50%;
+  height: 60px;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.circleiconwhite {
+  width: 60px;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  border: 1px solid grey;
+  height: 60px;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.colmargin {
+  margin-top: 10px;
+}
+
+.border-left-white {
+  border-left: 4px solid lightslategray;
+}
+
+.border-left-green {
+  border-left: 4px solid #60bf79;
+}
